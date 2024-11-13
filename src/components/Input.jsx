@@ -1,14 +1,20 @@
-import { useSelector, useDispatch } from 'react-redux';
-import { getUser } from '../redux/userSlice';
+import { useState } from 'react';
+import { useDispatch } from 'react-redux';
+import { changeUsername } from '../redux/userSlice';
 
-export function Input({username}) {
+export function Input() {
     const dispatch = useDispatch();
-    const user = useSelector((state) => state.user.login);
+    const [username, setUsername] = useState('');
+
     return (
+        <div>
         <input
           type="text"
           value={username}
-          onChange={(e) => dispatch(getUser(e.target.value))}
+          onChange={(e) => setUsername(e.target.value)}
+          placeholder="Enter GitHub username"
         />
+        <button onClick={() => dispatch(changeUsername(username))}>Search</button>
+        </div>
       );
 }

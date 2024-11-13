@@ -20,9 +20,12 @@ const initialState = {
             state.followers = followers;
             state.publicRepos = public_repos;
             state.avatar = avatar_url;
-        }
+        },
+        changeUsername: (state, action) => {
+            state.username = action.payload; 
+          },
     }
   })
 
-  export const {getUser} = userSlice.actions
+  export const {getUser, changeUsername} = userSlice.actions
   export default userSlice.reducer;
